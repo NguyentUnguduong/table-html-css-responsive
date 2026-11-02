@@ -1,0 +1,145 @@
+/**
+ * question-table.css
+ * Bảng dữ liệu câu hỏi trắc nghiệm / đề thi (Responsive Table Styles)
+ */
+
+/* ================= 1. KHUNG CHỨA BẢNG (CONTAINER) ================= */
+.tbl-box {
+  width: 100%;
+  margin: 12px 0 16px 0;
+  box-sizing: border-box;
+  /* Cuộn mượt khi bảng vượt quá khung nhìn màn hình mobile */
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-height: 85vh;
+  -webkit-overflow-scrolling: touch;
+  background: #ffffff;
+}
+
+/* ================= 2. BẢNG VÀ CÁC Ô DỮ LIỆU ================= */
+.tbl-box table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  text-align: center;
+  /* Tự động co giãn cỡ chữ thông minh theo chiều rộng màn hình */
+  font-size: clamp(11.5px, 2.2vw, 14px);
+  line-height: 1.4;
+  background-color: #ffffff;
+  margin: 0 auto !important;
+}
+
+.tbl-box th, 
+.tbl-box td {
+  border: 1px solid #333333 !important;
+  /* Padding co giãn: màn hình nhỏ tự co lại, màn hình to thoáng mắt */
+  padding: clamp(6px, 1vh, 9px) clamp(5px, 0.8vw, 10px) !important;
+  vertical-align: middle !important;
+  box-sizing: border-box;
+}
+
+.tbl-box thead th {
+  font-weight: 600;
+  text-wrap: balance;
+  word-break: normal;
+  background-color: #f8fafc;
+}
+
+/* Cột đầu tiên (thường là tiêu đề dòng): Căn trái và cho phép ngắt dòng tự nhiên */
+.tbl-box tbody td:first-child,
+.tbl-box tbody th:first-child {
+  text-align: left !important;
+  white-space: normal;
+  word-break: normal;
+  text-wrap: balance;
+  font-weight: 500;
+}
+
+/* Các cột dữ liệu số: Khóa dòng để tránh bị bẻ vụn số/ký hiệu */
+.tbl-box tbody td:not(:first-child) {
+  white-space: nowrap !important;
+  letter-spacing: -0.2px;
+}
+
+/* Chữ nghiêng/biến số toán học (n, m, x...) */
+.tbl-box th em,
+.tbl-box td em {
+  font-style: italic;
+  white-space: nowrap !important;
+  font-size: 0.95em;
+  font-weight: normal;
+  display: inline-block;
+}
+
+/* ================= 3. Ô GIAO ĐẦU BẢNG CÓ ĐƯỜNG CHÉO SVG ================= */
+.tbl-box th:has(svg),
+.tbl-box th.split-header {
+  position: relative !important;
+  width: clamp(120px, 30%, 150px) !important;
+  min-width: 110px !important;
+  height: clamp(48px, 5.5vh, 56px) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.tbl-box th svg {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+}
+
+/* Nhãn góc dưới - trái */
+.tbl-box th:has(svg) span:first-of-type,
+.tbl-box th > span:first-of-type {
+  position: absolute !important;
+  left: clamp(4px, 0.8vw, 8px) !important;
+  bottom: clamp(3px, 0.6vh, 6px) !important;
+  top: auto !important;
+  right: auto !important;
+  font-size: clamp(9.5px, 2.2vw, 12px) !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+/* Nhãn góc trên - phải */
+.tbl-box th:has(svg) span:last-of-type,
+.tbl-box th > span:last-of-type {
+  position: absolute !important;
+  right: clamp(4px, 0.8vw, 8px) !important;
+  top: clamp(3px, 0.6vh, 6px) !important;
+  bottom: auto !important;
+  left: auto !important;
+  font-size: clamp(9.5px, 2.2vw, 12px) !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+/* ================= 4. NGUỒN SỐ LIỆU DƯỚI BẢNG ================= */
+.tbl-source,
+.tbl-box + p[style*="text-align:right"] {
+  text-align: right;
+  font-size: clamp(10.5px, 2.2vw, 12.5px);
+  margin: 4px 0 12px;
+  color: #64748b;
+  font-style: italic;
+}
+
+/* ================= 5. THANH CUỘN TINH GỌN (CUSTOM SCROLLBAR) ================= */
+.tbl-box::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.tbl-box::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
+}
+.tbl-box::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+.tbl-box::-webkit-scrollbar-track {
+  background-color: transparent;
+}
